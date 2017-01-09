@@ -12,7 +12,7 @@ public class MapDecorator extends SmartArrayDecorator {
 
     @Override
     public Object[] toArray() {
-        Object[] finitaMap = new Object[smartArray.size()];
+        Object[] finitaMap = smartArray.toArray();
         for(int i = 0; i < smartArray.size(); i++){
             finitaMap[i] = myFunction.apply(smartArray.toArray()[i]);
         }

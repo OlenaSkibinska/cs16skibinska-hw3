@@ -13,7 +13,7 @@ public class FilterDecorator extends SmartArrayDecorator{
 
     @Override
     public Object[] toArray() {
-        Object[] finitaFilt = new Object[smartArray.size()];
+        Object[] finitaFilt = new Object[size()];
         int index = 0;
         for(int i = 0; i < smartArray.size(); i++){
             if(myPredicate.test(smartArray.toArray()[i])){

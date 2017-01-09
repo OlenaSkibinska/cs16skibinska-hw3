@@ -9,18 +9,19 @@ public class DistinctDecorator extends SmartArrayDecorator {
 
     @Override
     public Object[] toArray() {
-        Object[] finita = new Object[smartArray.size()];
+        Object[] finita = new Object[size()];
         int index = 0;
-        int check = 0;
-        for(int i = 0; i < smartArray.size(); i++){
-            for (int j = i + 1; j < smartArray.size(); j++){
-                if(smartArray.toArray()[i].equals(smartArray.toArray()[j])){
-                    check = 1;
+        boolean check;
+        for (Object element: smartArray.toArray()) {
+            check = false;
+            for (int i = 0; i < index; i++){
+                if (finita[i].toString().equals(element.toString())) {
+                    check = true;
                     break;
                 }
             }
-            if (check == 0){
-                finita[index] = smartArray.toArray()[i];
+            if (!check) {
+                finita[index] = element;
                 index++;
             }
         }
@@ -34,13 +35,17 @@ public class DistinctDecorator extends SmartArrayDecorator {
 
     @Override
     public int size() {
-        int finitaSize = smartArray.size();
+        int finitaSize = 0;
         for (int i = 0; i < smartArray.size(); i++){
-            for(int j = 0; j < smartArray.size(); j++){
-                if(!(smartArray.toArray()[i].equals(smartArray.toArray()[j]))){
-                    finitaSize++;
+            boolean check = false;
+            for(int j = i-1; j >= 0; j--){
+                if(smartArray.toArray()[i].toString().equals(smartArray.toArray()[j].toString())){
+                    check = true;
                     break;
                 }
+            }
+            if (!check) {
+                finitaSize++;
             }
         }
         return finitaSize;

@@ -16,7 +16,7 @@ public class SortDecorator extends SmartArrayDecorator{
 
     @Override
     public Object[] toArray() {
-        Object[] finitaSor = new Object[smartArray.size()];
+        Object[] finitaSor = smartArray.toArray();
         Arrays.sort(finitaSor, myComparator);
         return finitaSor;
     }
