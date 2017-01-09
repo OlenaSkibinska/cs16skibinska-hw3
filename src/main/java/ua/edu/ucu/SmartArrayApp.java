@@ -50,19 +50,20 @@ public class SmartArrayApp {
     }
 
     public static String[]
-            findDistinctStudentNamesFrom2ndYearWithGPAgt4AndOrderedBySurname(Student[] students) {
+            findDistinctStudentNamesFrom2ndYearWithGPAgt4AndOrderedBySurname
+            (Student[] students) {
 
         // Hint: to convert Object[] to String[] - use the following code
         //Object[] result = studentSmartArray.toArray();
         //return Arrays.copyOf(result, result.length, String[].class);
-        MyPredicate prFor1 = new MyPredicate() {
+        MyPredicate prForOne = new MyPredicate() {
             @Override
             public boolean test(Object t) {
                 return (((Student)t).getYear() == 2);
             }
         };
 
-        MyPredicate prFor2 = new MyPredicate() {
+        MyPredicate prForTwo = new MyPredicate() {
             @Override
             public boolean test(Object t) {
                 return (((Student)t).getGPA() >= 4);
@@ -72,20 +73,22 @@ public class SmartArrayApp {
         MyComparator myCo = new MyComparator() {
             @Override
             public int compare(Object o1, Object o2) {
-                return (((Student) o1).getSurname().compareTo(((Student) o2).getSurname()));
+                return (((Student) o1).getSurname().compareTo
+                        (((Student) o2).getSurname()));
             }
         };
         MyFunction myFu = new MyFunction() {
             @Override
             public Object apply(Object t) {
-                return ((Student) t).getSurname() + " " + ((Student) t).getName();
+                return ((Student) t).getSurname() + " "
+                        + ((Student) t).getName();
             }
         };
 
         SmartArray sa = new BaseArray(students);
 
-        sa = new FilterDecorator(sa, prFor1);
-        sa = new FilterDecorator(sa, prFor2);
+        sa = new FilterDecorator(sa, prForOne);
+        sa = new FilterDecorator(sa, prForTwo);
         sa = new DistinctDecorator(sa);
         sa = new SortDecorator(sa, myCo);
         sa = new MapDecorator(sa, myFu);

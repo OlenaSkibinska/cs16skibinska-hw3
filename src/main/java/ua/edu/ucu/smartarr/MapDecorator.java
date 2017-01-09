@@ -5,7 +5,7 @@ import ua.edu.ucu.functions.MyFunction;
 // Map every element to another object using MyFunction
 public class MapDecorator extends SmartArrayDecorator {
     private MyFunction myFunction;
-    public MapDecorator(SmartArray smartArray, MyFunction myFunction){
+    public MapDecorator(SmartArray smartArray, MyFunction myFunction) {
         super(smartArray);
         this.myFunction = myFunction;
     }
@@ -13,7 +13,7 @@ public class MapDecorator extends SmartArrayDecorator {
     @Override
     public Object[] toArray() {
         Object[] finitaMap = smartArray.toArray();
-        for(int i = 0; i < smartArray.size(); i++){
+        for (int i = 0; i < smartArray.size(); i++) {
             finitaMap[i] = myFunction.apply(smartArray.toArray()[i]);
         }
         return finitaMap;
